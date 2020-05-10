@@ -2,8 +2,8 @@ function DribbleLogo(props) {
   return (
     <svg
       fill="currentColor"
-      width={24}
-      height={24}
+      width="1em"
+      height="1em"
       viewBox="0 0 1000 1000"
       {...props}
     >
@@ -16,8 +16,8 @@ function GithubLogo(props) {
   return (
     <svg
       fill="currentColor"
-      width={24}
-      height={24}
+      width="1em"
+      height="1em"
       viewBox="0 0 438.549 438.549"
       {...props}
     >
@@ -30,8 +30,8 @@ function LinkedInLogo(props) {
   return (
     <svg
       fill="currentColor"
-      width={24}
-      height={24}
+      width="1em"
+      height="1em"
       viewBox="0 0 24 24"
       {...props}
     >
@@ -42,19 +42,21 @@ function LinkedInLogo(props) {
 
 const NavLink = (props) => (
   <a
-    className="text-white text-opacity-50 hover:text-opacity-100 transition-all duration-500 ease-in"
+    className="inline-block p-2 text-white text-opacity-50 hover:text-opacity-100 transition-all duration-500 ease-in"
     {...props}
   />
 );
 
 export default () => (
   <header className="text-center h-screen flex items-center flex-col justify-center">
-    <h1 className="text-5xl font-semibold leading-none">Jaymi Childers</h1>
-    <p className="font-thin text-lg text-sm text-opacity-75">
+    <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold leading-none">
+      Jaymi Childers
+    </h1>
+    <p className="font-thin text-base md:text-lg text-sm text-opacity-75">
       Front-end Developer &amp; Designer
     </p>
 
-    <nav className="flex space-x-4 items-center justify-center mt-4">
+    <nav className="flex items-center justify-center mt-2 text-xl lg:text-3xl">
       <NavLink
         href="https://www.linkedin.com/in/jchilders62/"
         target="_blank"

@@ -8,15 +8,11 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html>
+      <Html lang="en">
         <Head>
-          <link
-            href="https://fonts.googleapis.com/css?family=Signika:400,600,300,700"
-            rel="stylesheet"
-            type="text/css"
-          />
+          <title>Jaymi Childers - Front-end Developer &amp; Designer</title>
         </Head>
-        <body className="bg-gray-900 text-white">
+        <body className="bg-gray-900 text-white light-mode:bg-gray-100 light-mode:text-gray-900 text-black">
           <Main />
           <NextScript />
         </body>
