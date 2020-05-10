@@ -1,0 +1,21 @@
+{
+  "name": "jaymichilders.com",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "James Childers",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "^9.3.6",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.34",
+    "typescript": "^3.8.3"
+  }
+}
