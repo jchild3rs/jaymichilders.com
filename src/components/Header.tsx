@@ -42,7 +42,7 @@ function LinkedInLogo(props) {
 
 const NavLink = (props) => (
   <a
-    className="inline-block p-2 text-white text-opacity-50 hover:text-opacity-100 transition duration-500 ease-in"
+    className="inline-block p-2 text-opacity-50 hover:text-opacity-100 transition duration-500 ease-in"
     {...props}
   />
 );
