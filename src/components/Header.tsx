@@ -42,7 +42,7 @@ function LinkedInLogo(props) {
 
 const NavLink = (props) => (
   <a
-    className="inline-block p-2 text-white text-opacity-50 hover:text-opacity-100 transition-all duration-500 ease-in"
+    className="inline-block p-2 text-white text-opacity-50 hover:text-opacity-100 transition duration-500 ease-in"
     {...props}
   />
 );
@@ -56,32 +56,39 @@ export default () => (
       Front-end Developer &amp; Designer
     </p>
 
-    <nav className="flex items-center justify-center mt-2 text-xl lg:text-3xl">
-      <NavLink
-        href="https://www.linkedin.com/in/jchilders62/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <LinkedInLogo alt="LinkedIn Logo" />
-        <span className="sr-only">My LinkedIn Profile</span>
-      </NavLink>
-      <NavLink
-        href="http://github.com/jchild3rs"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <GithubLogo />
-        <span className="sr-only">My GitHub Profile</span>
-      </NavLink>
-
-      <NavLink
-        href="https://dribbble.com/jchilders"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span className="sr-only">My Dribbble Profile</span>
-        <DribbleLogo />
-      </NavLink>
+    <nav>
+      <ul className="flex items-center justify-center mt-2 text-xl lg:text-3xl">
+        <li>
+          <NavLink
+            href="https://www.linkedin.com/in/jchilders62/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <LinkedInLogo alt="LinkedIn Logo" />
+            <span className="sr-only">My LinkedIn Profile</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            href="http://github.com/jchild3rs"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <GithubLogo />
+            <span className="sr-only">My GitHub Profile</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            href="https://dribbble.com/jchilders"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span className="sr-only">My Dribbble Profile</span>
+            <DribbleLogo />
+          </NavLink>
+        </li>
+      </ul>
     </nav>
   </header>
 );

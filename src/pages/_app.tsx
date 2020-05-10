@@ -1,10 +1,14 @@
 import { AppProps } from "next/app";
-import Header from "../components/Header";
+import Head from "next/head";
 import "../app.css";
+import Header from "../components/Header";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
+      <Head>
+        <title>Jaymi Childers - Front-end Developer &amp; Designer</title>
+      </Head>
       <style jsx>{`
         /* latin-ext */
         @font-face {
