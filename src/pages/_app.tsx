@@ -8,6 +8,10 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>Jaymi Childers - Front-end Developer &amp; Designer</title>
+        <meta
+          name="description"
+          content="Front-end developer and designer working remotely from Atlanta, GA."
+        />
       </Head>
       <style jsx>{`
         /* latin-ext */
