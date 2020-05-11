@@ -1,0 +1,39 @@
+<Head>
+  <title>Styled-System + Styled Components vs Tailwind for React Apps</title>
+</Head>
+
+# Styled-System + Styled Components vs Tailwind for React Apps
+
+<small>Posted May 10th, 2020</small>
+
+In my last large React project, I decided it was time to try Styled Components. CSS
+Modules felt overly tedious, and plain CSS felt like a chore.
+
+**TLDR: For me, it comes down to a few things:**
+
+- the API being almost identical.
+- Prop bloat vs class name bloat.
+- CSS-in-JS vs regular stylesheet
+
+## Component Polymophism vs. Simple Semantic Markup
+
+At first, I was blown away at the power of the <InlineCodeSnippet>as</InlineCodeSnippet> tag.
+
+<span>
+  <pre>
+    <code className="xml rounded font-mono">{`<Box as="h1">Heading</Box>`}</code>
+  </pre>
+</span>
+<br />
+
+vs:
+
+<span>
+  <pre>
+    <code className="xml rounded font-mono">{`<h1>Heading</h1>`}</code>
+  </pre>
+</span>
+
+<br />
+
+WIP...

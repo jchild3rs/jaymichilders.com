@@ -1,18 +1,97 @@
 import { AppProps } from "next/app";
 import Head from "next/head";
+import { MDXProvider } from "@mdx-js/react";
 import "../app.css";
 import Header from "../components/Header";
+import hljs from "highlight.js/lib/core";
+import javascript from "highlight.js/lib/languages/javascript";
+import css from "highlight.js/lib/languages/css";
+import xml from "highlight.js/lib/languages/xml";
+import { useEffect } from "react";
+
+import InlineCodeSnippet from "../components/InlineCodeSnippet";
+import Link from "next/link";
+import Router, { useRouter } from "next/router";
+hljs.registerLanguage("javascript", javascript);
+hljs.registerLanguage("css", css);
+hljs.registerLanguage("xml", xml);
+
+if (process.browser) {
+  window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? require(`highlightjs-themes/github.css`)
+    : require(`highlightjs-themes/monokai.css`);
+}
+
+function Close(props) {
+  return (
+    <svg
+      fill="currentColor"
+      width="1em"
+      height="1em"
+      viewBox="0 0 357 357"
+      {...props}
+    >
+      <path d="M357 35.7L321.3 0 178.5 142.8 35.7 0 0 35.7l142.8 142.8L0 321.3 35.7 357l142.8-142.8L321.3 357l35.7-35.7-142.8-142.8z" />
+    </svg>
+  );
+}
+
+const colors =
+  "text-white text-opacity-75 light-mode:bg-gray-100 light-mode:text-gray-900 print:text-black";
+
+const heading = "font-semibold leading-tight text-opacity-100";
+
+const mdComponents = {
+  Header,
+  InlineCodeSnippet,
+  Head,
+  ul: (props) => <ul className={`list-disc ml-4 mb-4 ${colors}`} {...props} />,
+  strong: (props) => (
+    <strong className={`${colors} text-opacity-100`} {...props} />
+  ),
+  h1: (props) => (
+    <h1
+      className={`mt-8 md:mt-16 ${colors} ${heading} text-3xl lg:text-4xl mb-4`}
+      {...props}
+    />
+  ),
+  h2: (props) => (
+    <h2
+      className={`mt-4 md:mt-8 ${colors} ${heading} text-xl lg:text-2xl mb-4`}
+      {...props}
+    />
+  ),
+  h3: (props) => (
+    <h3
+      className={`${colors} font-semibold text-xl mb-4 text-opacity-100`}
+      {...props}
+    />
+  ),
+  p: (props) => (
+    <p className={`${colors} text-base lg:text-lg mb-4`} {...props} />
+  ),
+  small: (props) => <p className={`${colors} text-xs mb-4`} {...props} />,
+};
+
+function highlightCodeBlocks() {
+  document.querySelectorAll("pre code").forEach((block) => {
+    hljs.highlightBlock(block);
+  });
+}
+
+Router.events.on("routeChangeComplete", highlightCodeBlocks);
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+
+  useEffect(() => {
+    highlightCodeBlocks();
+  }, []);
+
+  const isPost = router.asPath.startsWith("/posts/");
+
   return (
     <>
-      <Head>
-        <title>Jaymi Childers - Front-end Developer &amp; Designer</title>
-        <meta
-          name="description"
-          content="Front-end developer and designer working remotely from Atlanta, GA."
-        />
-      </Head>
       <style jsx>{`
         /* latin-ext */
         @font-face {
@@ -115,8 +194,24 @@ function MyApp({ Component, pageProps }: AppProps) {
             U+2212, U+2215, U+FEFF, U+FFFD;
         }
       `}</style>
-      <Header />
-      <Component {...pageProps} />
+      <MDXProvider components={mdComponents}>
+        <div className="container mx-auto px-4 mx-8 lg:px-8 max-w-xl">
+          {isPost && (
+            <Link href="/posts">
+              <a
+                href="/posts"
+                title="Back to post listing"
+                className="absolute top-0 right-0 text-xl p-6"
+              >
+                <Close />
+                <span className="sr-only">Back to post listing</span>
+              </a>
+            </Link>
+          )}
+
+          <Component {...pageProps} />
+        </div>
+      </MDXProvider>
     </>
   );
 }

@@ -27,8 +27,12 @@ class MyDocument extends Document {
             sizes="16x16"
             href="/favicon-16x16.png"
           />
+          <link
+            rel="stylesheet"
+            href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/default.min.css"
+          />
         </Head>
-        <body className="bg-gray-900 text-white light-mode:bg-gray-100 light-mode:text-gray-900 text-black">
+        <body className="bg-gray-900 text-white light-mode:bg-gray-100 light-mode:text-gray-900">
           <Main />
           <NextScript />
         </body>

@@ -1,3 +1,6 @@
+import { default as RouterLink } from "next/link";
+import React, { FC } from "react";
+
 function DribbleLogo(props) {
   return (
     <svg
@@ -26,6 +29,23 @@ function GithubLogo(props) {
   );
 }
 
+function BlogIcon(props) {
+  return (
+    <svg
+      viewBox="0 -256 1792 1792"
+      fill="currentColor"
+      width="1em"
+      height="1em"
+      {...props}
+    >
+      <path
+        d="M596.61 1154.17q0 80-56 136t-136 56q-80 0-136-56t-56-136q0-80 56-136t136-56q80 0 136 56t56 136zm512 123q2 28-17 48-18 21-47 21h-135q-25 0-43-16.5t-20-41.5q-22-229-184.5-391.5t-391.5-184.5q-25-2-41.5-20t-16.5-43v-135q0-29 21-47 17-17 43-17h5q160 13 306 80.5t259 181.5q114 113 181.5 259t80.5 306zm512 2q2 27-18 47-18 20-46 20h-143q-26 0-44.5-17.5t-19.5-42.5q-12-215-101-408.5t-231.5-336q-142.5-142.5-336-231.5t-408.5-102q-25-1-42.5-19.5t-17.5-43.5v-143q0-28 20-46 18-18 44-18h3q262 13 501.5 120t425.5 294q187 186 294 425.5t120 501.5z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
 function LinkedInLogo(props) {
   return (
     <svg
@@ -40,55 +60,78 @@ function LinkedInLogo(props) {
   );
 }
 
-const NavLink = (props) => (
+const NavLink: FC<any> = React.memo((props) => (
   <a
     className="inline-block p-2 text-opacity-50 hover:text-opacity-100 transition duration-500 ease-in"
     {...props}
   />
-);
+));
 
-export default () => (
-  <header className="text-center h-screen flex items-center flex-col justify-center">
-    <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold leading-none">
-      Jaymi Childers
-    </h1>
-    <p className="font-thin text-base md:text-lg text-sm text-opacity-75">
-      Front-end Developer &amp; Designer
-    </p>
+export default function Header({
+  className,
+  ...props
+}: {
+  className?: string;
+}) {
+  return (
+    <header
+      className={`text-center flex items-center flex-col justify-center ${className}`}
+      {...props}
+    >
+      <RouterLink href="/">
+        <a href="/">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold leading-none">
+            Jaymi Childers
+          </h1>
+        </a>
+      </RouterLink>
+      <p className="font-thin text-base md:text-lg text-sm text-opacity-75">
+        Front-end Developer &amp; Designer
+      </p>
 
-    <nav>
-      <ul className="flex items-center justify-center mt-2 text-xl lg:text-3xl">
-        <li>
-          <NavLink
-            href="https://www.linkedin.com/in/jchilders62/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <LinkedInLogo alt="LinkedIn Logo" />
-            <span className="sr-only">My LinkedIn Profile</span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            href="http://github.com/jchild3rs"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <GithubLogo />
-            <span className="sr-only">My GitHub Profile</span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            href="https://dribbble.com/jchilders"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span className="sr-only">My Dribbble Profile</span>
-            <DribbleLogo />
-          </NavLink>
-        </li>
-      </ul>
-    </nav>
-  </header>
-);
+      <nav>
+        <ul className="flex items-center justify-center mt-2 text-xl lg:text-3xl">
+          <li>
+            <NavLink
+              href="https://www.linkedin.com/in/jchilders62/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className="sr-only">My LinkedIn Profile</span>
+              <LinkedInLogo alt="LinkedIn Logo" />
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              href="http://github.com/jchild3rs"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className="sr-only">My GitHub Profile</span>
+              <GithubLogo />
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              href="https://dribbble.com/jchilders"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className="sr-only">My Dribbble Profile</span>
+              <DribbleLogo />
+            </NavLink>
+          </li>
+
+          <li>
+            <RouterLink href="/posts">
+              <NavLink href="/posts">
+                <span className="sr-only">My Blog</span>
+                <BlogIcon />
+              </NavLink>
+            </RouterLink>
+          </li>
+        </ul>
+      </nav>
+    </header>
+  );
+}
