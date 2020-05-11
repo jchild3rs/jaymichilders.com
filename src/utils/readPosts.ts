@@ -1,10 +1,13 @@
+const fs = require("fs");
+
+const path =
+  process.env.NODE_ENV === "production" ? "./posts" : "./src/pages/posts";
 export default async function readPosts() {
-  const fs = require("fs");
   const posts = [];
-  const files = await fs.promises.readdir("./src/pages/posts");
+  const files = await fs.promises.readdir(path);
   for (const file of files) {
     if (file.endsWith("mdx")) {
-      const stats = await fs.promises.stat(`./src/pages/posts/${file}`);
+      const stats = await fs.promises.stat(`${path}/${file}`);
       posts.push({
         lastModified: stats.mtimeMs,
         url: `/posts/${file.replace(".mdx", "")}`,
