@@ -1,5 +1,7 @@
 const fs = require("fs");
 
+console.log(__dirname);
+
 const path = process.env.NODE_ENV === "production" ? "./" : "./src/pages/posts";
 export default async function readPosts() {
   const posts = [];
