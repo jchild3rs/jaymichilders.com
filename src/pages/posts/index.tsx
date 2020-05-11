@@ -2,7 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import Header from "../../components/Header";
 
-export default ({ posts }) => (
+export default () => (
   <>
     <Header className="my-8" />
     <Head>

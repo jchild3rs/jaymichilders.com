@@ -44,7 +44,6 @@ const heading = "font-semibold leading-tight text-opacity-100";
 const mdComponents = {
   Header,
   InlineCodeSnippet,
-  Head,
   ul: (props) => <ul className={`list-disc ml-4 mb-4 ${colors}`} {...props} />,
   strong: (props) => (
     <strong className={`${colors} text-opacity-100`} {...props} />
@@ -79,7 +78,7 @@ function highlightCodeBlocks() {
   });
 }
 
-Router.events.on("routeChangeComplete", highlightCodeBlocks);
+// Router.events.on("routeChangeComplete", highlightCodeBlocks);
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -92,6 +91,13 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
+      <Head>
+        <title>Jaymi Childers - Front End Developer &amp; Designer</title>
+        <meta
+          name="description"
+          content="Remote front-end developer out of Atlanta, GA."
+        />
+      </Head>
       <style jsx>{`
         /* latin-ext */
         @font-face {
