@@ -1,29 +1,32 @@
 {
   "name": "jaymichilders.com",
   "version": "1.0.0",
-  "main": "index.js",
-  "author": "James Childers",
-  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^0.13.0",
     "@mdx-js/loader": "^1.6.1",
     "@next/mdx": "^9.3.6",
     "date-fns": "^2.13.0",
+    "faunadb": "^2.14.1",
     "highlight.js": "^10.0.2",
     "highlightjs-themes": "^1.0.0",
+    "isomorphic-unfetch": "^3.0.0",
     "next": "^9.3.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "tailwindcss": "^1.4.6"
+    "swr": "^0.2.2",
+    "tailwindcss": "^1.4.6",
+    "use-auth0-hooks": "^0.7.0"
   },
   "devDependencies": {
     "@types/node": "^13.13.5",
     "@types/react": "^16.9.34",
     "autoprefixer": "^9.7.6",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "vercel": "^19.0.1"
   }
 }
