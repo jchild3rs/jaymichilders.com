@@ -4,14 +4,21 @@ import { ALL_POSTS_QUERY } from '../../lib/queries';
 const { SitemapStream, streamToPromise } = require('sitemap');
 
 export default async (req, res) => {
-
-  const { data: {findAllPosts: {data: posts}} } = await graphqlFetch({
+  const {
+    data: {
+      findAllPosts: { data: posts },
+    },
+  } = await graphqlFetch({
     query: ALL_POSTS_QUERY,
   }).then(res => res.json());
 
-  const links = posts.map(post => ({
-    url: `/post/${post.slug}`, changefreq: 'daily', priority: 0.3
-  }))
+  const links = [{ url: `/`, changefreq: 'daily', priority: 0.3 }].concat(
+    posts.map(post => ({
+      url: `/post/${post.slug}`,
+      changefreq: 'daily',
+      priority: 0.3,
+    }))
+  );
 
   const stream = new SitemapStream({ hostname: process.env.APP_URL });
 
