@@ -1,128 +1,16 @@
-directive @embedded on OBJECT
-directive @collection(name: String!) on OBJECT
-directive @index(name: String!) on FIELD_DEFINITION
-directive @resolver(
-  name: String
-  paginated: Boolean! = false
-) on FIELD_DEFINITION
-directive @relation(name: String) on FIELD_DEFINITION
-directive @unique(index: String) on FIELD_DEFINITION
-type Author {
-  name: String!
-  hasBlog: [Post]
-  # The document's ID.
-  _id: ID!
-  id: ID!
-  # The document's timestamp.
-  _ts: Long!
-}
-
-# 'Author' input values
-input AuthorInput {
-  id: ID!
-  name: String!
-  hasBlog: [ID]
-}
-
-scalar Date
-
-# The `Long` scalar type
-represents non-fractional signed whole numeric values.
-# Long can represent values between -(2^63) and 2^63 - 1.
-scalar Long
-
-type Mutation {
-# Delete an existing document in the collection of 'Author'
-deleteAuthor(
-# The 'Author' document's ID
-id: ID!
-): Author
-# Update an existing document in the collection of 'Post'
-updatePost(
-# The 'Post' document's ID
-id: ID!
-# 'Post' input values
-data: PostInput!
-): Post
-# Update an existing document in the collection of 'Author'
-updateAuthor(
-# The 'Author' document's ID
-id: ID!
-# 'Author' input values
-data: AuthorInput!
-): Author
-# Create a new document in the collection of 'Author'
-createAuthor(
-# 'Author' input values
-data: AuthorInput!
-): Author!
-# Delete an existing document in the collection of 'Post'
-deletePost(
-# The 'Post' document's ID
-id: ID!
-): Post
-addPost(input: PostInput!): Post!
-# Create a new document in the collection of 'Post'
-createPost(
-# 'Post' input values
-data: PostInput!
-): Post!
+input PostInput {
+  title: String!
+  content: String!
+  slug: String!
 }
 
 type Post {
-# The document's ID.
-_id: ID!
-id: ID!
-content: String!
-hasAuthor: Author!
-title: String!
-# The document's timestamp.
-_ts: Long!
-}
-
-# Allow manipulating the relationship between the types 'Post' and 'Author' using the field 'Post.hasAuthor'.
-input PostHasAuthorRelation {
-# Create a document of type 'Author' and associate it with the current document.
-create: AuthorInput
-# Connect a document of type 'Author' with the current document using its ID.
-connect: ID
-}
-
-input PostInput {
-title: String!
-content: String!
-authorID: ID!
-}
-
-# The pagination object for elements of type 'Post'.
-type PostPage {
-# The elements of type 'Post' in this page.
-data: [Post]!
-# A cursor for elements coming after the current page.
-after: String
-# A cursor for elements coming before the current page.
-before: String
+  content: String!
+  title: String!
+  slug: String!
 }
 
 type Query {
-# Find a document from the collection of 'Author' by its id.
-findAuthorByID(
-# The 'Author' document's ID
-id: ID!
-): Author
-# Find a document from the collection of 'Post' by its id.
-findPostByID(
-# The 'Post' document's ID
-id: ID!
-): Post
-getPost(id: ID!): Post
-getAllPosts(
-# The number of items to return per page.
-_size: Int
-# The pagination cursor.
-_cursor: String
-): PostPage!
+  findAllPosts: [Post]
+  findPostBySlug(slug: String!): Post
 }
-
-scalar Time
-

@@ -1,5 +1,5 @@
-import { default as RouterLink } from "next/link";
-import React, { FC } from "react";
+import { default as RouterLink } from 'next/link';
+import React, { FC } from 'react';
 
 function DribbleLogo(props) {
   return (
@@ -60,7 +60,7 @@ function LinkedInLogo(props) {
   );
 }
 
-const NavLink: FC<any> = React.memo((props) => (
+const NavLink: FC<any> = React.memo(props => (
   <a
     className="inline-block p-2 text-opacity-50 hover:text-opacity-100 transition duration-500 ease-in"
     {...props}
@@ -123,12 +123,10 @@ export default function Header({
           </li>
 
           <li>
-            <RouterLink href="/posts">
-              <NavLink href="/posts">
-                <span className="sr-only">My Blog</span>
-                <BlogIcon />
-              </NavLink>
-            </RouterLink>
+            <NavLink href="/api/rss" target="_blank">
+              <span className="sr-only">My Blog</span>
+              <BlogIcon />
+            </NavLink>
           </li>
         </ul>
       </nav>

@@ -1,4 +1,4 @@
-import Document, { Html, Head, Main, NextScript } from "next/document";
+import Document, { Head, Html, Main, NextScript } from 'next/document';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -26,6 +26,12 @@ class MyDocument extends Document {
             type="image/png"
             sizes="16x16"
             href="/favicon-16x16.png"
+          />
+          <link
+            rel="alternate"
+            type="application/rss+xml"
+            title="Jaymi Childers' Posts"
+            href="/api/rss"
           />
         </Head>
         <body className="bg-gray-900 text-white light-mode:bg-gray-100 light-mode:text-gray-900">

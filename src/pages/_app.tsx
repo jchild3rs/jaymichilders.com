@@ -1,90 +1,12 @@
-import hljs from 'highlight.js/lib/core';
-import css from 'highlight.js/lib/languages/css';
-import javascript from 'highlight.js/lib/languages/javascript';
-import xml from 'highlight.js/lib/languages/xml';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import React from 'react';
 import '../css/app.css';
-
-hljs.registerLanguage('javascript', javascript);
-hljs.registerLanguage('css', css);
-hljs.registerLanguage('xml', xml);
-
-if (process.browser) {
-  window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-    ? require(`highlightjs-themes/github.css`)
-    : require(`highlightjs-themes/monokai.css`);
-}
-
-function Close(props) {
-  return (
-    <svg
-      fill="currentColor"
-      width="1em"
-      height="1em"
-      viewBox="0 0 357 357"
-      {...props}
-    >
-      <path d="M357 35.7L321.3 0 178.5 142.8 35.7 0 0 35.7l142.8 142.8L0 321.3 35.7 357l142.8-142.8L321.3 357l35.7-35.7-142.8-142.8z" />
-    </svg>
-  );
-}
-
-const colors =
-  'text-white text-opacity-75 light-mode:bg-gray-100 light-mode:text-gray-900 print:text-black';
-
-const heading = 'font-semibold leading-tight text-opacity-100';
-
-// const mdComponents = {
-//   Header,
-//   InlineCodeSnippet,
-//   ul: (props) => <ul className={`list-disc ml-12 mb-4 ${colors}`} {...props} />,
-//   strong: (props) => (
-//     <strong className={`${colors} text-opacity-100`} {...props} />
-//   ),
-//   h1: (props) => (
-//     <h1
-//       className={`mt-8 md:mt-16 ${colors} ${heading} text-3xl lg:text-4xl mb-4`}
-//       {...props}
-//     />
-//   ),
-//   h2: (props) => (
-//     <h2
-//       className={`mt-4 md:mt-8 ${colors} ${heading} text-xl lg:text-2xl mb-4`}
-//       {...props}
-//     />
-//   ),
-//   h3: (props) => (
-//     <h3
-//       className={`${colors} font-semibold text-xl mb-4 text-opacity-100`}
-//       {...props}
-//     />
-//   ),
-//   p: (props) => (
-//     <p className={`${colors} text-base lg:text-lg mb-4 light-mode:text-opacity-75`} {...props} />
-//   ),
-//   small: (props) => <p className={`${colors} text-xs mb-4`} {...props} />,
-// };
-
-function highlightCodeBlocks() {
-  document.querySelectorAll('pre code').forEach(block => {
-    hljs.highlightBlock(block);
-  });
-}
-
-// Router.events.on("routeChangeComplete", highlightCodeBlocks);
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
-
-  useEffect(() => {
-    highlightCodeBlocks();
-  }, [router]);
-
-  const isPost = router.asPath.startsWith('/posts/');
+  const isAdmin = router.asPath.startsWith('/admin');
 
   return (
     <>
@@ -94,6 +16,36 @@ function MyApp({ Component, pageProps }: AppProps) {
           name="description"
           content="Remote front-end developer out of Atlanta, GA."
         />
+        {isAdmin && (
+          <>
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/antd/4.2.5/antd.min.css"
+            />
+            <link
+              rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/monokai-sublime.min.css"
+              integrity="sha256-nfuQSmJM/8wWM/S11LZmxszSv2HggH128IqmGD0hny8="
+              crossOrigin="anonymous"
+            />
+            <link
+              rel="stylesheet"
+              href="https://unpkg.com/react-quill@1.3.3/dist/quill.bubble.css"
+            />
+            <link
+              rel="stylesheet"
+              href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css"
+            />
+            <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+            <script>
+              {`
+              hljs.configure({   // optionally configure hljs
+                languages: ['javascript', 'xml', 'css'],
+                useBR: false
+              });`}
+            </script>
+          </>
+        )}
       </Head>
       <style jsx>{`
         /* latin-ext */
@@ -197,19 +149,6 @@ function MyApp({ Component, pageProps }: AppProps) {
             U+2212, U+2215, U+FEFF, U+FFFD;
         }
       `}</style>
-      {isPost && (
-        <Link href="/posts">
-          <a
-            href="/posts"
-            title="Back to post listing"
-            className="absolute top-0 right-0 text-xl p-6 print:hidden"
-          >
-            <Close />
-            <span className="sr-only">Back to post listing</span>
-          </a>
-        </Link>
-      )}
-
       <Component {...pageProps} />
     </>
   );
