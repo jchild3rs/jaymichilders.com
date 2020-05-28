@@ -6,7 +6,7 @@ export default function graphqlFetch({
   variables,
   headers = {},
 }: any) {
-  return fetch(`${process.env.APP_URL}/graphql`, {
+  return fetch(`https://graphql.fauna.com/graphql`, {
     credentials: 'omit',
     method: 'POST',
     headers: {
