@@ -1,8 +1,6 @@
 {
-  "routes": [
-    {
-      "src": "/graphql",
-      "dest": "https://graphql.fauna.com/graphql"
-    }
+  "rewrites": [
+    { "source": "/feed.xml", "destination": "/api/rss" },
+    { "source": "/sitemap.xml", "destination": "/api/sitemap" }
   ]
 }

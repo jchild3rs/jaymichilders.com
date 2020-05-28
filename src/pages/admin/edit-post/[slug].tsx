@@ -72,7 +72,7 @@ export default function EditPost({ user, initialData, slug }) {
           href="https://unpkg.com/react-quill@1.3.3/dist/quill.snow.css"
         />
       </Head>
-      <div className="space-y-8 bg-white p-8 m-8 shadow mt-12">
+      <div className="space-y-8 m-8 shadow mt-12">
         <h1 className="text-3xl font-bold mb-6">Edit Post</h1>
         <PostForm initialValues={post} onFinish={handleSave} />
       </div>

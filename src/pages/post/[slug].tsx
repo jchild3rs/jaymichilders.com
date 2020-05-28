@@ -36,14 +36,11 @@ export async function getStaticPaths() {
     query: ALL_POSTS_QUERY,
   }).then(res => res.json());
   const posts = initialData?.data?.findAllPosts?.data;
-  console.log(initialData);
 
   // Get the paths we want to pre-render based on posts
   const paths = posts.map(post => ({
     params: { slug: post.slug },
   }));
-
-  console.log(paths);
 
   // We'll pre-render only these paths at build time.
   // { fallback: false } means other routes should 404.

@@ -37,14 +37,11 @@ export default async function editPost(req, res) {
     });
     const postUpdateMutation = await postUpdateMutationRequest.json();
     const { errors, data } = postUpdateMutation;
-    // console.log(postUpdateMutation);
 
     if (errors) {
       res.status(400).json({ errors });
       return;
     }
-
-    console.log(data);
 
     const { updatePost } = data;
     res.json(updatePost);

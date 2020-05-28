@@ -51,7 +51,7 @@ export default function AdminDashboard() {
       <Table
         loading={!posts}
         size="small"
-        dataSource={posts}
+        dataSource={(posts || []).map((post, i) => ({ ...post, key: i }))}
         columns={columns}
       />
     </div>

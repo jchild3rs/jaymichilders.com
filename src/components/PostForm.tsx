@@ -26,7 +26,12 @@ var toolbarOptions = [
 ];
 export default function PostForm({ initialValues, onFinish }) {
   return (
-    <Form initialValues={initialValues} onFinish={onFinish} layout="vertical">
+    <Form
+      initialValues={initialValues}
+      onFinish={onFinish}
+      layout="vertical"
+      // className="bg-white p-8 rounded text-gray-900"
+    >
       <Form.Item name="title" label="Post title" rules={[{ required: true }]}>
         <Input type="text" placeholder="Post title" size="large" />
       </Form.Item>
@@ -41,7 +46,6 @@ export default function PostForm({ initialValues, onFinish }) {
         //   {
         //     validator: () => {
         //       // @ts-ignoreh-32 mb-12 text-xl
-        //       // console.log(reactQuillRef.current.getEditor().getContents());
         //       return Promise.resolve();
         //     },
         //   },
@@ -51,7 +55,7 @@ export default function PostForm({ initialValues, onFinish }) {
         }}
       >
         <ReactQuill
-          theme="bubble"
+          theme="snow"
           preserveWhitespace
           modules={{
             syntax: true, // Include syntax module

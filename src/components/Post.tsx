@@ -1,17 +1,10 @@
-import React, { useEffect } from 'react';
-
-const Prism = require('prismjs');
+import React from 'react';
 
 export default function Post({ post }) {
-  useEffect(() => {
-    console.log(Prism);
-  }, [])
   return (
-    <>
-      <article
-        className="post"
-        dangerouslySetInnerHTML={{ __html: post?.content }}
-      />
-    </>
+    <article
+      className="post"
+      dangerouslySetInnerHTML={{ __html: post?.content }}
+    />
   );
 }

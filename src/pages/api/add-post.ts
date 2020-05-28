@@ -35,12 +35,10 @@ export default async function addPost(req, res) {
     const { error, data, ...rest } = postCreateMutation;
 
     if (error) {
-      console.log(error);
+      console.error(error);
       res.status(error.status || 400).end(error.message);
       return;
     }
-
-    console.log(error, data, rest);
 
     const { createPost: post } = data;
     res.json({ post });

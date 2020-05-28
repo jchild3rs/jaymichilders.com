@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <>
             <link
               rel="stylesheet"
-              href="https://cdnjs.cloudflare.com/ajax/libs/antd/4.2.5/antd.min.css"
+              href="https://cdnjs.cloudflare.com/ajax/libs/antd/4.2.5/antd.dark.min.css"
             />
             <link
               rel="stylesheet"
@@ -30,7 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             />
             <link
               rel="stylesheet"
-              href="https://unpkg.com/react-quill@1.3.3/dist/quill.bubble.css"
+              href="https://unpkg.com/react-quill@1.3.3/dist/quill.snow.css"
             />
             <link
               rel="stylesheet"

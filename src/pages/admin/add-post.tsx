@@ -27,7 +27,7 @@ export default function AddPost({ user }) {
 
   return (
     <div className="container mx-auto">
-      <div className="space-y-8 bg-white p-8 m-8 shadow mt-12">
+      <div className="space-y-8 m-8 shadow mt-12">
         <h1 className="text-3xl font-bold mb-6">Add Post</h1>
         <PostForm initialValues={initialValues} onFinish={handleSave} />
       </div>

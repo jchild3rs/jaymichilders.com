@@ -5,17 +5,17 @@ export default initAuth0({
   clientId: '24sUySkqigTKiri54KyTq7RyaV4V1EUn',
   clientSecret: process.env.AUTH0_CLIENT_SECRET,
   scope: 'openid profile',
-  redirectUri: 'http://localhost:3000/api/callback',
-  postLogoutRedirectUri: 'http://localhost:3000/',
+  redirectUri: `${process.env.APP_URL}/api/callback`,
+  postLogoutRedirectUri: process.env.APP_URL,
   session: {
     // The secret used to encrypt the cookie.
-    cookieSecret: '2534029456804545039805018518003630554449',
+    cookieSecret: process.env.COOKIE_SECRET,
     // The cookie lifetime (expiration) in seconds. Set to 8 hours by default.
     cookieLifetime: 60 * 60 * 8,
     // // (Optional) The cookie domain this should run on. Leave it blank to restrict it to your domain.
     // cookieDomain: 'your-domain.com',
     // // (Optional) SameSite configuration for the session cookie. Defaults to 'lax', but can be changed to 'strict' or 'none'. Set it to false if you want to disable the SameSite setting.
-    // cookieSameSite: 'lax',
+    cookieSameSite: 'strict',
     // // (Optional) Store the id_token in the session. Defaults to false.
     // storeIdToken: false,
     // // (Optional) Store the access_token in the session. Defaults to false.
