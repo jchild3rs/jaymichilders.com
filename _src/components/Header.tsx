@@ -1,5 +1,9 @@
 import { default as RouterLink } from 'next/link';
 import React, { FC } from 'react';
+import { Signika } from 'next/font/google';
+import clsx from 'clsx';
+
+const signika = Signika({ subsets: ['latin'] });
 
 function DribbleLogo(props) {
   return (
@@ -79,13 +83,16 @@ export default function Header({
       {...props}
     >
       <RouterLink href="/">
-        <a href="/">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold leading-none">
-            Jaymi Childers
-          </h1>
-        </a>
+        <h1
+          className={clsx(
+            'text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold leading-none',
+            signika.className
+          )}
+        >
+          Jaymi Childers
+        </h1>
       </RouterLink>
-      <p className="font-thin text-base md:text-lg text-sm text-opacity-75">
+      <p className="font-thin text-base md:text-lg text-sm text-opacity-75 mt-2">
         Front-end Developer &amp; Designer
       </p>
 
