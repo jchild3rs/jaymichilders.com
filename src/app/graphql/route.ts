@@ -1,13 +1,13 @@
-import { NextResponse } from 'next/server';
-
 const waitFor = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-export const GET = async () => {
-  await waitFor(600)
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const operationName = searchParams.get('operationName');
+  await waitFor(600);
 
-  return NextResponse.json({
+  return Response.json({
     data: {
-      hello: 'world',
+      operationName: operationName ?? 'unknown',
     },
   });
 }
