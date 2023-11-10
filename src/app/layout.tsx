@@ -5,6 +5,9 @@ import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
+export const dynamic = 'force-dynamic'
+export const fetchCache = 'force-no-store'
+
 export const metadata: Metadata = {
   title: 'James Childers - Developer &amp; Designer',
   description: 'I enjoy creative problem solving and building things.',
