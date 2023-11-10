@@ -9,5 +9,9 @@ export async function GET(request: Request) {
     data: {
       operationName: operationName ?? 'unknown',
     },
+  }, {
+    headers: {
+      'Cache-Control': 'max-age=60',
+    }
   });
 }
