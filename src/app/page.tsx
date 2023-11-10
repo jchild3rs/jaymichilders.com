@@ -1,5 +1,7 @@
+'use client'
+
 import { default as RouterLink } from 'next/link';
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Signika } from 'next/font/google';
 import clsx from 'clsx';
 
@@ -72,7 +74,10 @@ const NavLink: FC<any> = React.memo(props => (
 ));
 NavLink.displayName = 'NavLink';
 
-export default function Page({ className, ...props }: { className?: string }) {
+export default function Page() {
+  useEffect(() => {
+    fetch('/graphql?operationName=test').then(console.log).catch(console.error)
+  }, [])
   return (
     <main
       className={`text-center flex items-center flex-col justify-center h-screen`}
