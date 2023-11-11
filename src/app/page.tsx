@@ -63,17 +63,19 @@ export default function Page() {
           aria-hidden
           className={css({
             color: 'transparent',
-            opacity: '0.2',
+            opacity: '0.15',
             position: 'fixed',
             top: 0,
             left: 0,
             pointerEvents: 'none',
             height: '100vh',
             objectFit: 'cover',
-            filter: 'blur(10px)',
+            filter: 'blur(20px)',
             width: '100%',
-            transition: 'filter 0.5s ease-in-out',
+            transition: 'filter 5s ease-in-out, opacity 1s ease-in-out',
+            zIndex: -1,
             _groupHover: {
+              opacity: '.25',
               filter: 'blur(0px)',
             },
           })}
@@ -81,11 +83,11 @@ export default function Page() {
 
         <p
           className={css({
-            opacity: '75',
-            md: { fontSize: 'lg' },
+            opacity: '0.75',
+            fontSize: 'lg'
           })}
         >
-          Hi, I&rsquo;m a web developer (former designer) currently doing a lot of
+          Hi, I&rsquo;m a web developer/designer currently doing a lot of
           React, NodeJS and GraphQL. I have a passion for interaction design and creative problem solving.
         </p>
 
@@ -210,12 +212,12 @@ function NavLink(
     <a
       className={css({
         display: 'inline-block',
-        opacity: '50%',
+        opacity: '0.5',
         transition: 'opacity 0.5s ease-in',
         fontSize: '3xl',
         md: { fontSize: '4xl' },
         _hover: {
-          opacity: '100',
+          opacity: '1',
         },
       })}
       {...props}

@@ -25,7 +25,6 @@ export default function RootLayout({
         className={clsx(
           css({
             backgroundColor: 'gray.900',
-            backgroundImage: 'linear-gradient(to bottom,transparent,black)',
             color: 'white',
             _osLight: {
               backgroundColor: 'gray.100',
@@ -34,6 +33,9 @@ export default function RootLayout({
           }),
           inter.className
         )}
+        style={{
+          backgroundImage: 'linear-gradient(to bottom,transparent,rgba(0,0,0,0.2)',
+        }}
       >
         {children}
       </body>
