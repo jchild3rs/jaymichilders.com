@@ -86,7 +86,7 @@ export default function Page() {
           })}
         >
           Hi, I&rsquo;m a web developer (former designer) currently doing a lot of
-          React, NodeJS and GraphQL. I have a passion for UX, interaction design, and creative problem solving.
+          React, NodeJS and GraphQL. I have a passion for interaction design and creative problem solving.
         </p>
 
         <nav
