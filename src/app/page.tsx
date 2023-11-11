@@ -1,79 +1,142 @@
-import { default as RouterLink } from 'next/link';
-import React, { FC, memo } from 'react';
+import React from 'react';
 import { Signika } from 'next/font/google';
 import clsx from 'clsx';
 import ClientGqlTest from '@/app/client-gql-test';
+import { css } from '../../styled-system/css';
+import { container, flex } from '../../styled-system/patterns';
+import Image from 'next/image';
+import bg from './bg.png';
 
 const signika = Signika({ subsets: ['latin'] });
-
 
 export default function Page() {
   return (
     <main
-      className={`text-center flex items-center flex-col justify-center h-screen`}
+      className={clsx(
+        css({
+          display: 'flex',
+          gap: 4,
+          px: 4,
+          flexDirection: 'column',
+          h: 'screen',
+          maxWidth: 'sm',
+          mx: 'auto',
+          md: {
+            maxWidth: 'md',
+          },
+        }),
+        'group'
+      )}
     >
       <ClientGqlTest />
-      <RouterLink href="/">
+
+      <div
+        className={clsx(
+          container({
+            my: 'auto',
+          }),
+          flex({
+            direction: 'column',
+            gap: 4,
+          })
+        )}
+      >
         <h1
           className={clsx(
-            'text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold leading-none',
+            css({
+              fontSize: '5xl',
+              md: {
+                fontSize: '6xl',
+              },
+              fontWeight: 'semibold',
+              lineHeight: 'none',
+            }),
             signika.className
           )}
         >
-          James Childers
+          Hello there
         </h1>
-      </RouterLink>
 
-      <p className="font-thin md:text-lg text-sm text-opacity-75 mt-2 max-w-lg">
-        Web developer focused on front-end development. I have a passion for UX and building re-usable component libraries.
-      </p>
+        <Image
+          src={bg}
+          alt="Image effect"
+          aria-hidden
+          className={css({
+            color: 'transparent',
+            opacity: '0.2',
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            pointerEvents: 'none',
+            height: '100vh',
+            objectFit: 'cover',
+            filter: 'blur(10px)',
+            width: '100%',
+            transition: 'filter 0.5s ease-in-out',
+            _groupHover: {
+              filter: 'blur(0px)',
+            },
+          })}
+        />
 
-      <nav>
-        <ul className="flex items-center justify-center mt-2 text-xl lg:text-3xl">
-          <li>
-            <NavLink
-              href="https://www.linkedin.com/in/jchilders62/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="sr-only">My LinkedIn Profile</span>
-              <LinkedInLogo aria-label="LinkedIn Logo" />
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              href="https://github.com/jchild3rs"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="sr-only">My GitHub Profile</span>
-              <GithubLogo />
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              href="https://dribbble.com/jchilders"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="sr-only">My Dribbble Profile</span>
-              <DribbleLogo />
-            </NavLink>
-          </li>
+        <p
+          className={css({
+            opacity: '75',
+            md: { fontSize: 'lg' },
+          })}
+        >
+          Hi, I&rsquo;m a web developer (former designer) currently doing a lot of
+          React, NodeJS and GraphQL. I have a passion for UX, interaction design, and creative problem solving.
+        </p>
 
-          <li>
-            <NavLink href="/api/rss" target="_blank">
-              <span className="sr-only">My Blog</span>
-              <BlogIcon />
-            </NavLink>
-          </li>
-        </ul>
-      </nav>
+        <nav
+          className={flex({
+            gap: 4,
+            mt: 2,
+            fontSize: 'xl',
+            lg: {
+              fontSize: '3xl',
+            },
+          })}
+        >
+          <NavLink
+            href="https://www.linkedin.com/in/jchilders62/"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="My LinkedIn Profile"
+          >
+            <LinkedInLogo aria-hidden />
+          </NavLink>
+          <NavLink
+            href="https://github.com/jchild3rs"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="My GitHub Profile"
+          >
+            <GithubLogo aria-hidden />
+          </NavLink>
+
+          <NavLink
+            href="https://dribbble.com/jchilders"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="My Dribbble Profile"
+          >
+            <DribbleLogo aria-hidden />
+          </NavLink>
+
+          <NavLink href="/api/rss" target="_blank" title="My Blog">
+            <BlogIcon aria-hidden />
+          </NavLink>
+        </nav>
+      </div>
     </main>
   );
 }
 
-function DribbleLogo(props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) {
+function DribbleLogo(
+  props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>
+) {
   return (
     <svg
       fill="currentColor"
@@ -87,7 +150,9 @@ function DribbleLogo(props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSV
   );
 }
 
-function GithubLogo(props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) {
+function GithubLogo(
+  props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>
+) {
   return (
     <svg
       fill="currentColor"
@@ -101,7 +166,9 @@ function GithubLogo(props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVG
   );
 }
 
-function BlogIcon(props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) {
+function BlogIcon(
+  props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>
+) {
   return (
     <svg
       viewBox="0 -256 1792 1792"
@@ -118,7 +185,9 @@ function BlogIcon(props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGEl
   );
 }
 
-function LinkedInLogo(props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) {
+function LinkedInLogo(
+  props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>
+) {
   return (
     <svg
       fill="currentColor"
@@ -132,10 +201,24 @@ function LinkedInLogo(props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGS
   );
 }
 
-const NavLink: FC<any> = memo(props => (
-  <a
-    className="inline-block p-2 text-opacity-50 hover:text-opacity-100 transition duration-500 ease-in"
-    {...props}
-  />
-));
-NavLink.displayName = 'NavLink';
+function NavLink(
+  props: React.JSX.IntrinsicAttributes &
+    React.ClassAttributes<HTMLAnchorElement> &
+    React.AnchorHTMLAttributes<HTMLAnchorElement>
+) {
+  return (
+    <a
+      className={css({
+        display: 'inline-block',
+        opacity: '50%',
+        transition: 'opacity 0.5s ease-in',
+        fontSize: '3xl',
+        md: { fontSize: '4xl' },
+        _hover: {
+          opacity: '100',
+        },
+      })}
+      {...props}
+    />
+  );
+}

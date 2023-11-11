@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import clsx from 'clsx';
 import './globals.css';
+import { css } from '../../styled-system/css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,7 +23,15 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={clsx(
-          'bg-gray-900 text-white light-mode:bg-gray-100 light-mode:text-gray-900',
+          css({
+            backgroundColor: 'gray.900',
+            backgroundImage: 'linear-gradient(to bottom,transparent,black)',
+            color: 'white',
+            _osLight: {
+              backgroundColor: 'gray.100',
+              color: 'gray.900',
+            }
+          }),
           inter.className
         )}
       >
